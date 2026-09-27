@@ -618,8 +618,8 @@ const handleContactSubmit = async () => {
             <Image 
               src="/logo.png" 
               alt="BlackMail Logo" 
-              width={130} 
-              height={39}
+              width={100} 
+              height={30}
               className="footer-logo"
               priority
             />

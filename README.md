@@ -13,34 +13,34 @@
 ## Interface & Showcase
 
 <p align="center">
-  <img src="tempus/BlackMail/Mainpage.webp" alt="BlackMail Main Interface" width="100%" />
+  <img src="BlackMail/Mainpage.webp" alt="BlackMail Main Interface" width="100%" />
 </p>
 
 <table align="center">
   <tr>
     <td width="50%">
       <h4 align="center">Real-time Inbox & Message Viewer</h4>
-      <img src="tempus/BlackMail/inbox.webp" alt="Disposable Inbox Details" />
+      <img src="BlackMail/inbox.webp" alt="Disposable Inbox Details" />
     </td>
     <td width="50%">
       <h4 align="center">Notion-Powered Blog</h4>
-      <img src="tempus/BlackMail/Blog_Shot.webp" alt="Notion CMS Blog" />
+      <img src="BlackMail/Blog_Shot.webp" alt="Notion CMS Blog" />
     </td>
   </tr>
   <tr>
     <td width="50%">
       <h4 align="center">Interactive Navigation Menu</h4>
-      <img src="tempus/BlackMail/Nav_Shot.webp" alt="Navigation Interface" />
+      <img src="BlackMail/Nav_Shot.webp" alt="Navigation Interface" />
     </td>
     <td width="50%">
       <h4 align="center">Overview & Dual Layout</h4>
-      <img src="tempus/BlackMail/main%202.webp" alt="Overview Dual View" />
+      <img src="BlackMail/main%202.webp" alt="Overview Dual View" />
     </td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="tempus/BlackMail/footer.webp" alt="BlackMail Footer" width="100%" />
+  <img src="BlackMail/footer.webp" alt="BlackMail Footer" width="100%" />
 </p>
 
 ---
@@ -169,17 +169,7 @@ graph LR
 ## Project Structure
 
 ```
-tempus/
-├── app/
-│   ├── api/              # API routes (temp email, blog, contact)
-│   │   ├── blog/         # Notion CMS blog endpoints
-│   │   └── temp/         # Temporary email generation & management
-│   ├── blog/             # Notion blog rendering pages
-│   ├── components/       # UI components (Dialog, ThemeProvider, Toast, etc.)
-│   ├── links/            # Resource links page
-│   ├── globals.css       # Global CSS & Tailwind custom styles
-│   ├── layout.tsx        # Root layout & providers
-│   └── page.tsx          # Main application homepage
+├── app/                  # API routes (temp email, blog, contact) & pages
 ├── public/               # Static web assets & icons
 └── BlackMail/            # Documentation screenshots & mermaid diagrams
 ```
@@ -196,8 +186,8 @@ tempus/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/prince7z/tempus.git
-   cd tempus
+   git clone https://github.com/prince7z/TemPus.git
+   cd TemPus
    ```
 
 2. **Install dependencies**
@@ -206,7 +196,7 @@ tempus/
    ```
 
 3. **Configure Environment Variables** (Optional for Notion CMS & MongoDB)
-   Create a `.env.local` file in `tempus/`:
+   Create a `.env.local` file:
    ```env
    NOTION_API_KEY=your_notion_api_key
    NOTION_DATABASE_ID=your_notion_database_id
