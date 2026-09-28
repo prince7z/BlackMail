@@ -42,7 +42,8 @@ jobs:
             cp -r public .next/standalone/public
             cp -r .next/static .next/standalone/.next/static
 
-            pm2 startOrReload ecosystem.config.js --env production
+            pm2 delete blackmail 2>/dev/null || true
+            pm2 start ecosystem.config.js --env production
 
             pm2 save
         env:
