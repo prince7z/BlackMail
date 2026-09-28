@@ -17,38 +17,15 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Find and navigate to deployment directory
-            if [ -d "$HOME/projects/TemPus" ]; then
-              cd "$HOME/projects/TemPus"
-            elif [ -d "$HOME/projects/BlackMail" ]; then
-              cd "$HOME/projects/BlackMail"
-            elif [ -d "$HOME/BlackMail" ]; then
-              cd "$HOME/BlackMail"
-            elif [ -d "$HOME/tempus" ]; then
-              cd "$HOME/tempus"
-            else
-              echo "Error: Deployment directory not found on EC2."
-              exit 1
-            fi
+            cd ~/projects/TemPus
 
-            echo "Deploying in directory: $(pwd)"
-
-            # Fetch and reset to latest main branch
             git fetch origin main
             git reset --hard origin/main
 
-            # Install dependencies
-            npm ci || npm install
+            npm ci
 
-            # Build Next.js app
             npm run build
 
-            # Reload or start PM2 application process
-            if [ -f "ecosystem.config.js" ]; then
-              pm2 startOrReload ecosystem.config.js --env production
-            else
-              pm2 reload blackmail || pm2 reload tempus || pm2 start npm --name "blackmail" -- run start
-            fi
+            pm2 startOrReload ecosystem.config.js --env production
 
-            # Save PM2 state
             pm2 save
