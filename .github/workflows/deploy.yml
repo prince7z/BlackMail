@@ -16,20 +16,11 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          envs: NOTION_TOKEN,NOTION_DATABASE_ID,MONGODB_URI
           script: |
-            # Load NVM so npm and pm2 are available in non-interactive SSH session
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
             cd ~/projects/TemPus
-
-            # Write .env file from CI environment (secrets passed via envs:)
-            cat > .env << EOF
-            NOTION_TOKEN=$NOTION_TOKEN
-            NOTION_DATABASE_ID=$NOTION_DATABASE_ID
-            MONGODB_URI=$MONGODB_URI
-            EOF
 
             git fetch origin main
             git reset --hard origin/main
@@ -38,7 +29,6 @@ jobs:
 
             npm run build
 
-            # Copy static/public assets into standalone output (required for standalone mode)
             cp -r public .next/standalone/public
             cp -r .next/static .next/standalone/.next/static
 
@@ -46,8 +36,3 @@ jobs:
             pm2 start ecosystem.config.js --env production
 
             pm2 save
-        env:
-          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
-
