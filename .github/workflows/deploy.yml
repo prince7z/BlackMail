@@ -17,6 +17,11 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
+            # Load NVM so npm and pm2 are available in non-interactive SSH session
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            export PATH="$HOME/.nvm/versions/node/$(node -e 'process.stdout.write(process.version)')/bin:$PATH"
+
             cd ~/projects/TemPus
 
             git fetch origin main
