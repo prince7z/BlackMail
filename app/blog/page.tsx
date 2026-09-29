@@ -3,7 +3,9 @@
 import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Icons } from '../components/Icons';
+import BlogNav from '../components/BlogNav';
 import '../styles/blog.css';
+
 
 interface BlogPost {
   id: string;
@@ -119,20 +121,7 @@ export default function BlogPage() {
 
   return (
     <div className="blog-root">
-      {/* ── Top bar ── */}
-      <nav className="blog-topbar">
-        <Link href="/" className="blog-topbar-logo">
-          <Icons.Mail />
-          BlackMail
-        </Link>
-        <Link href="/" className="blog-back-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m12 19-7-7 7-7M19 12H5"/>
-          </svg>
-          Home
-        </Link>
-      </nav>
+      <BlogNav backHref="/" backLabel="Home" />
 
       {/* ── Hero ── */}
       <header className="blog-hero">
