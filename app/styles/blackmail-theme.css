@@ -50,12 +50,10 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: var(--bg-primary);
-  border-bottom: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-right: 2rem;
+  background-color: color-mix(in srgb, var(--bg-primary) 94%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .main-nav {
@@ -98,8 +96,9 @@ body {
 
 /* CardNav Theme Overrides */
 .main-nav {
-  background-color: var(--bg-primary) !important;
-  border-bottom: 2px solid var(--border) !important;
+  width: 100%;
+  background-color: transparent !important;
+  border-bottom: 0 !important;
 }
 
 .main-nav .logo {
@@ -123,20 +122,22 @@ body {
 /* Override CardNav menu background */
 .main-nav .card-nav-content {
   background-color: var(--bg-primary) !important;
-  border: 2px solid var(--border) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 0 0 0.9rem 0.9rem;
+  box-shadow: 0 14px 28px var(--shadow);
 }
 
 /* Override CardNav button styling */
 .main-nav button {
   background-color: var(--bg-secondary) !important;
   color: var(--text-primary) !important;
-  border: 2px solid var(--border) !important;
+  border: 1px solid var(--border) !important;
 }
 
 .main-nav button:hover {
-  background-color: var(--accent) !important;
-  color: var(--bg-primary) !important;
-  border-color: var(--accent) !important;
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--text-tertiary) !important;
 }
 
 /* Make hamburger menu lines more visible */
@@ -169,6 +170,14 @@ body {
 
 .main-nav .nav-label {
   color: var(--text-primary) !important;
+}
+
+.main-nav .card-nav-brand {
+  color: var(--text-primary) !important;
+}
+
+.main-nav .card-nav {
+  background-color: var(--bg-primary) !important;
 }
 
 .brand {
@@ -1436,10 +1445,11 @@ body {
 
 /* Footer */
 .footer {
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-primary);
   border-top: 1px solid var(--border);
   margin-top: auto;
   padding: 2rem 0 1rem;
+  font-family: inherit;
 }
 
 .footer-content {
@@ -1542,6 +1552,10 @@ body {
   text-align: left;
   color: var(--text-tertiary);
   font-size: 0.72rem;
+}
+
+.footer-bottom p {
+  margin: 0;
 }
 
 /* Contact Section */
@@ -1954,7 +1968,7 @@ body {
   .main-content,
   .footer-content {
     padding-left: 1rem;
-    padding-right: 1rem;
+    padding-right: 0;
   }
 
   .action-buttons {

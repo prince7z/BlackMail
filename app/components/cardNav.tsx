@@ -69,7 +69,7 @@ const CardNav: React.FC<CardNavProps> = ({
 
         contentEl.offsetHeight;
 
-        const topBar = 42;
+        const topBar = 60;
         const padding = 16;
         const contentHeight = contentEl.scrollHeight;
 
@@ -88,7 +88,7 @@ const CardNav: React.FC<CardNavProps> = ({
     const navEl = navRef.current;
     if (!navEl) return null;
 
-    gsap.set(navEl, { height: 42, overflow: 'hidden' });
+    gsap.set(navEl, { height: 60, overflow: 'hidden' });
     gsap.set(cardsRef.current, { y: 50, opacity: 0 });
 
     const tl = gsap.timeline({ paused: true });
@@ -182,26 +182,25 @@ const CardNav: React.FC<CardNavProps> = ({
     <div className={`card-nav-container ${className}`}>
       <nav ref={navRef} className={`card-nav ${isExpanded ? 'open' : ''}`} style={{ backgroundColor: baseColor }}>
         <div className="card-nav-top">
-          <div
+          <button
+            type="button"
             className={`hamburger-menu ${isHamburgerOpen ? 'open' : ''}`}
             onClick={toggleMenu}
-            role="button"
             aria-label={isExpanded ? 'Close menu' : 'Open menu'}
-            tabIndex={0}
+            aria-expanded={isExpanded}
+            aria-controls="card-nav-content"
             style={{ color: menuColor || '#000' }}
           >
             <div className="hamburger-line" />
             <div className="hamburger-line" />
-          </div>
+          </button>
 
           <div className="logo-container">
             <img src={logo} alt={logoAlt} className="logo" />
+            <span className="card-nav-brand">BlackMail</span>
           </div>
 
-         
-            
-          
-              <button
+          <button
               type="button"
               className="card-nav-cta-button"
               onClick={toggleTheme}
@@ -209,11 +208,10 @@ const CardNav: React.FC<CardNavProps> = ({
               aria-label="Toggle theme"
             >
               <Icon name={theme === 'light' ? 'Sun' : 'Moon'} />
-            </button>
-          
+          </button>
         </div>
 
-        <div className="card-nav-content" aria-hidden={!isExpanded}>
+        <div id="card-nav-content" className="card-nav-content" aria-hidden={!isExpanded}>
           {(items || []).slice(0, 3).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
