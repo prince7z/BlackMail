@@ -25,45 +25,71 @@ export default function EmailSection({
   onGenerate, onDelete, onCopy, onExtend, onBuy,
 }: EmailSectionProps) {
   return (
-    <section className="email-section">
+    <section className="email-section" aria-labelledby="email-section-title">
       <div className="email-card">
-        <h2>Your Temporary Email Address</h2>
+        <div className="email-intro">
+          <span className="home-section-eyebrow">Private by default</span>
+          <h1 id="email-section-title">Your inbox, without the noise.</h1>
+          <p>Get a temporary address in seconds. No sign-up, no clutter in your personal inbox.</p>
+        </div>
 
         <div className="email-display-area">
           {email ? (
             <>
+              <label className="email-address-label" htmlFor="temporary-email-address">Your temporary address</label>
               <div className="email-input-wrapper">
-                <input type="text" value={email} readOnly className="email-input" />
+                <input
+                  id="temporary-email-address"
+                  type="email"
+                  value={email}
+                  readOnly
+                  className="email-input"
+                  aria-label="Your temporary email address"
+                />
                 <div className="email-actions">
-                  <button onClick={() => onCopy(email)} className="copy-btn" aria-label="Copy email">
+                  <button type="button" onClick={() => onCopy(email)} className="copy-btn" aria-label="Copy temporary email address">
                     <Icons.Copy />
+                    <span>Copy</span>
                   </button>
                 </div>
               </div>
 
-              <div className="timer-display">
-                <Icons.Timer />
-                <span>{formatTime(timeLeft)}</span>
+              <div className="email-status-row">
+                <div className="timer-display" aria-label={`Address expires in ${formatTime(timeLeft)}`}>
+                  <Icons.Timer />
+                  <span>{formatTime(timeLeft)} remaining</span>
+                </div>
+                <span className="email-active-status"><span aria-hidden="true" /> Ready to receive mail</span>
               </div>
 
               <div className="action-buttons">
-                <button onClick={onGenerate} className="change-btn">Change</button>
-                <button onClick={onDelete} className="delete-btn">Delete</button>
-                <button onClick={onExtend} className="extend-btn">Extend Time</button>
-                <button onClick={onBuy} className="buy-btn">Get Permanent Email</button>
+                <button type="button" onClick={onGenerate} className="change-btn">New address</button>
+                <button type="button" onClick={onDelete} className="delete-btn">Delete</button>
+                <button type="button" onClick={onExtend} className="extend-btn">Extend time</button>
+                <button type="button" onClick={onBuy} className="buy-btn">Make it permanent</button>
               </div>
 
               {loading && (
-                <div className="loading-indicator"><span>Loading...</span></div>
+                <div className="loading-indicator" role="status"><span>Generating a new address…</span></div>
               )}
             </>
           ) : (
-            <button onClick={onGenerate} disabled={loading} className="generate-btn">
-              {loading ? 'Generating…' : 'Generate New Email'}
-            </button>
+            <div className="email-start-panel">
+              <div className="email-start-copy">
+                <span className="email-start-icon" aria-hidden="true"><Icons.Mail /></span>
+                <div>
+                  <strong>Ready when you are</strong>
+                  <p>Your address is private and will expire automatically.</p>
+                </div>
+              </div>
+              <button type="button" onClick={onGenerate} disabled={loading} className="generate-btn">
+                {loading ? 'Generating…' : 'Generate temporary email'}
+                {!loading && <span aria-hidden="true">→</span>}
+              </button>
+            </div>
           )}
 
-          {error && <p className="error-message">{error}</p>}
+          {error && <p className="error-message" role="alert">{error}</p>}
         </div>
       </div>
     </section>

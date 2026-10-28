@@ -34,37 +34,34 @@ export default function InboxSection({ email, messages, onSelectMessage, onRefre
   };
 
   return (
-    <section className="inbox-section">
-      <div className="refresh-progress">
+    <section className="inbox-section" aria-labelledby="inbox-section-title">
+      <div className="inbox-card">
+        <div className="refresh-progress" aria-hidden="true">
         <div
           ref={barRef}
           className="refresh-progress-bar"
-          style={{
-            animation: 'shrink 5s linear infinite',
-            width: '95%',
-            height: '3px',
-            marginLeft: '20px',
-            backgroundColor: 'var(--text-primary)',
-            transformOrigin: 'left',
-          }}
         />
-      </div>
+        </div>
 
-      <div className="inbox-card">
-        <div className="inbox-header" style={{ display: 'flex' }}>
-          <h3 className="inbox-title">Recent Mails</h3>
-          <div className="refresh-button">
-            <a onClick={handleRefresh} style={{ cursor: 'pointer', color: 'var(--text-primary)' }} aria-label="Refresh messages">
+        <div className="inbox-header">
+          <div>
+            <span className="home-section-eyebrow">Your private inbox</span>
+            <h2 className="inbox-title" id="inbox-section-title">Recent messages</h2>
+          </div>
+          <div className="inbox-header-actions">
+            <span className="inbox-status">{messages.length > 0 ? `${messages.length} ${messages.length === 1 ? 'message' : 'messages'}` : 'Ready to receive'}</span>
+            <button type="button" className="refresh-button" onClick={handleRefresh} aria-label="Refresh inbox">
               <Icons.Refresh />
-            </a>
+            </button>
           </div>
         </div>
 
-        <div className="inbox-list">
+        <div className="inbox-list" aria-live="polite">
           {messages.length > 0 ? (
             <div className="messages">
               {messages.map((message) => (
-                <div
+                <button
+                  type="button"
                   key={message.id}
                   className="message"
                   onClick={() => onSelectMessage(message)}
@@ -77,14 +74,14 @@ export default function InboxSection({ email, messages, onSelectMessage, onRefre
                     <span className="date">{message.date}</span>
                   </div>
                   <h3 className="subject">{message.subject}</h3>
-                </div>
+                </button>
               ))}
             </div>
           ) : (
             <div className="empty-inbox">
-              <div className="empty-inbox-icon"><Icons.Mail /></div>
-              <p>Your inbox is empty</p>
-              <p>Waiting for incoming emails</p>
+              <div className="empty-inbox-icon" aria-hidden="true"><Icons.Mail /></div>
+              <p className="empty-inbox-title">Your inbox is ready</p>
+              <p>Messages sent to your address will appear here.</p>
             </div>
           )}
         </div>

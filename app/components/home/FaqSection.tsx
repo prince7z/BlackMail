@@ -31,21 +31,30 @@ export default function FaqSection() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
-    <div className="faq-column" id="FAQ">
-      <h2>Frequently Asked Questions</h2>
+    <section className="faq-column" id="FAQ" aria-labelledby="faq-section-title">
+      <div className="faq-heading">
+        <div>
+          <span className="home-section-eyebrow">Good to know</span>
+          <h2 id="faq-section-title">Frequently asked questions</h2>
+        </div>
+        <p>Quick answers to help you use BlackMail with confidence.</p>
+      </div>
       {faqs.map((faq, i) => (
-        <div key={i} className={`faq-item ${active === i ? 'active' : ''}`}>
+        <div key={faq.question} className={`faq-item ${active === i ? 'active' : ''}`}>
           <button
+            type="button"
+            id={`faq-question-${i}`}
             className="faq-question"
             onClick={() => setActive(active === i ? null : i)}
             aria-expanded={active === i}
+            aria-controls={`faq-answer-${i}`}
           >
             <span>{faq.question}</span>
-            <span>{active === i ? '▼' : '▶'}</span>
+            <span className="faq-chevron" aria-hidden="true" />
           </button>
-          <p className="faq-answer">{faq.answer}</p>
+          <p id={`faq-answer-${i}`} className="faq-answer">{faq.answer}</p>
         </div>
       ))}
-    </div>
+    </section>
   );
 }

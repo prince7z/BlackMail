@@ -37,12 +37,26 @@ export default function ContactSection({ onToast }: ContactSectionProps) {
   };
 
   return (
-    <section className="contact-section">
+    <section className="contact-section" aria-labelledby="contact-section-title">
       <div className="contact-card">
-        <h2>Get in Touch</h2>
-        <p className="contact-description">
-          Have questions about BlackMail? Need support? We're here to help!
-        </p>
+        <div className="contact-intro">
+          <span className="home-section-eyebrow">We’re here to help</span>
+          <h2 id="contact-section-title">Let’s talk.</h2>
+          <p className="contact-description">
+            Questions, feedback, or need a hand? Send us a note and we’ll get back to you.
+          </p>
+
+          <div className="contact-info">
+            <div className="contact-item">
+              <span className="contact-item-icon"><Icons.Mail /></span>
+              <span>princesahu17125@gmail.com</span>
+            </div>
+            <div className="contact-item">
+              <span className="contact-item-icon"><Icons.MessageCircle /></span>
+              <span>Support is available 24/7</span>
+            </div>
+          </div>
+        </div>
 
         <form className="contact-form" onSubmit={handleSubmit}>
           <div className="form-row">
@@ -68,19 +82,9 @@ export default function ContactSection({ onToast }: ContactSectionProps) {
 
           <button type="submit" className="contact-submit-btn" disabled={sending}>
             {sending ? 'Sending…' : 'Send Message'}
+            {!sending && <span aria-hidden="true">→</span>}
           </button>
         </form>
-
-        <div className="contact-info">
-          <div className="contact-item">
-            <Icons.Mail />
-            <span>princesahu17125@gmail.com</span>
-          </div>
-          <div className="contact-item">
-            <Icons.MessageCircle />
-            <span>Live Chat Available 24/7</span>
-          </div>
-        </div>
       </div>
     </section>
   );
