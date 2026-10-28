@@ -2,22 +2,20 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "./styles/blackmail-theme.css";
+import { siteDescription, siteName, siteUrl } from "./lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
 
-const siteUrl = "https://blackmail.pcodes.tech";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "BlackMail - Fast & Anonymous Temporary Email Service",
-    template: "%s | BlackMail",
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Fast, secure, and disposable temporary email service. Protect your privacy, prevent spam, and generate instant temp mail addresses with zero sign-up.",
+  description: siteDescription,
   keywords: [
     "temp mail",
     "temporary email",
@@ -33,13 +31,13 @@ export const metadata: Metadata = {
   authors: [{ name: "BlackMail" }],
   creator: "BlackMail",
   publisher: "BlackMail",
+  alternates: {
+    canonical: siteUrl,
+  },
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
-  },
-  alternates: {
-    canonical: siteUrl,
   },
   openGraph: {
     title: "BlackMail - Temporary & Disposable Email Service",
@@ -52,7 +50,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
-        alt: "BlackMail - Temporary Email Service",
+        alt: `${siteName} - Temporary Email Service`,
       },
     ],
     locale: "en_US",
@@ -86,10 +84,9 @@ export default function RootLayout({
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "BlackMail",
+    name: siteName,
     url: siteUrl,
-    description:
-      "Fast, secure, and disposable temporary email service for privacy protection.",
+    description: siteDescription,
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     offers: {
