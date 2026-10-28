@@ -13,34 +13,34 @@
 ## Interface & Showcase
 
 <p align="center">
-  <img src="BlackMail/Mainpage.webp" alt="BlackMail Main Interface" width="100%" />
+  <img src="docs/screenshots/Mainpage.webp" alt="BlackMail Main Interface" width="100%" />
 </p>
 
 <table align="center">
   <tr>
     <td width="50%">
       <h4 align="center">Real-time Inbox & Message Viewer</h4>
-      <img src="BlackMail/inbox.webp" alt="Disposable Inbox Details" />
+      <img src="docs/screenshots/inbox.webp" alt="Disposable Inbox Details" />
     </td>
     <td width="50%">
       <h4 align="center">Notion-Powered Blog</h4>
-      <img src="BlackMail/Blog_Shot.webp" alt="Notion CMS Blog" />
+      <img src="docs/screenshots/Blog_Shot.webp" alt="Notion CMS Blog" />
     </td>
   </tr>
   <tr>
     <td width="50%">
       <h4 align="center">Interactive Navigation Menu</h4>
-      <img src="BlackMail/Nav_Shot.webp" alt="Navigation Interface" />
+      <img src="docs/screenshots/Nav_Shot.webp" alt="Navigation Interface" />
     </td>
     <td width="50%">
       <h4 align="center">Overview & Dual Layout</h4>
-      <img src="BlackMail/main%202.webp" alt="Overview Dual View" />
+      <img src="docs/screenshots/main%202.webp" alt="Overview Dual View" />
     </td>
   </tr>
 </table>
 
 <p align="center">
-  <img src="BlackMail/footer.webp" alt="BlackMail Footer" width="100%" />
+  <img src="docs/screenshots/footer.webp" alt="BlackMail Footer" width="100%" />
 </p>
 
 ---
@@ -169,9 +169,12 @@ graph LR
 ## Project Structure
 
 ```
-├── app/                  # API routes (temp email, blog, contact) & pages
+├── app/                  # Pages, components, and API routes
+├── docs/
+│   ├── architecture/     # Mermaid architecture and flow diagrams
+│   └── screenshots/      # README showcase images
 ├── public/               # Static web assets & icons
-└── BlackMail/            # Documentation screenshots & mermaid diagrams
+└── package.json          # Application scripts and dependencies
 ```
 
 ---
