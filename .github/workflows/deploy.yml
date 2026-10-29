@@ -20,7 +20,7 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-            cd ~/projects/TemPus
+            cd ~/projects/BlackMail
 
             git fetch origin main
             git reset --hard origin/main

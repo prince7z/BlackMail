@@ -46,6 +46,12 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <p>&copy; {new Date().getFullYear()} BlackMail. All rights reserved.</p>
+        <p>
+          Built with passion by{' '}
+          <a href="https://princesahu.me" target="_blank" rel="noopener noreferrer">
+            princesahu.me
+          </a>
+        </p>
       </div>
     </footer>
   );
